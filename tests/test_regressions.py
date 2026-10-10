@@ -1,8 +1,4 @@
-"""Regression tests for the bugs fixed by the parsel-native refactor.
-
-Each of these was an xfail(strict) entry in the pre-refactor bug ledger. Now they
-must stay green -- if one fails, one of the fixes regressed.
-"""
+"""Regression tests: each one pins a bug that was fixed."""
 
 from conftest import README_HTML, deep_nested_html, load_fixture, mojibake, sel, soup
 
@@ -45,3 +41,10 @@ def test_pre_code_preserves_indentation():
 def test_noscript_excluded():
     out = get_xpath_text(parsel_sel=sel(load_fixture("news.html")), xpath="//article")
     assert "NOSCRIPT_MARKER" not in out
+
+
+def test_xpath_scalar_results_do_not_crash():
+    s = sel("<p>a</p><p>b</p>")
+    assert get_xpath_text(parsel_sel=s, xpath="count(//p)") == "2.0"
+    assert get_xpath_text(parsel_sel=s, xpath="boolean(//p)") == "1"
+    assert get_results_row_text(parsel_sel=s, xpath="count(//p)") == ["2.0"]

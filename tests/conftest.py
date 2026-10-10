@@ -1,11 +1,9 @@
 """Shared helpers and constants for the parsel_text test-suite."""
 
-import bs4
-
 from pathlib import Path
 
+import bs4
 from parsel import Selector
-
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -37,7 +35,7 @@ def mojibake(text: str) -> str:
     """Return a deterministic mojibake version of *text*.
 
     Simulates UTF-8 bytes wrongly decoded as latin-1, e.g.
-    ``"café" -> "cafÃ©"`` -- exactly what ftfy.fix_text is meant to undo.
+    ``"café" -> "cafÃ©"`` -- exactly what ftfy.fix_encoding is meant to undo.
     """
     return text.encode("utf-8").decode("latin-1")
 
@@ -70,7 +68,7 @@ def search_results_html(n: int = 1000) -> str:
 
 
 def deep_nested_html(depth: int, leaf: str = "DEEP_LEAF") -> str:
-    """Build a pathologically deep DOM to probe traverse_soup's recursion."""
+    """Build a pathologically deep DOM to probe recursion limits."""
     return (
         "<html><body>"
         + "<div>" * depth

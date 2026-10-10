@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "parsel_text"
-version = "2.0.2"
+version = "2.1.0"
 authors = [
     {name = "Carlos A. Planchón", email = "carlosandresplanchonprestes@gmail.com"}
 ]
 description = "Extracts all text results from an XPath query on a parsel Selector object."
 classifiers = [
     "Intended Audience :: Developers",
-    "Topic :: Software Development :: Build Tools",
-    "Programming Language :: Python :: 3.10",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Typing :: Typed",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -22,7 +22,7 @@ classifiers = [
 license = "MIT"
 license-files = ["LICENSE"]
 
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 
 keywords = ["dom", "parsel", "scraping", "xpath"]
 readme = "README.md"

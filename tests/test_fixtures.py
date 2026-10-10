@@ -1,14 +1,7 @@
-"""Characterisation of parsel_text on production-like HTML fixtures.
-
-These pin the CURRENT behaviour on realistic, messy documents -- including the
-warts (nested-selector duplication, <pre> whitespace loss, deep-DOM crash). They
-are the safety net for the refactor over real-world input. The desired fixes for
-the warts live in test_known_bugs.py as xfail(strict) tests.
-"""
-
-from parsel import Selector
+"""Behaviour of parsel_text on production-like HTML fixtures."""
 
 from conftest import deep_nested_html, load_fixture, search_results_html
+from parsel import Selector
 
 from parsel_text import get_results_row_text, get_xpath_text
 
@@ -18,7 +11,7 @@ def sel(html):
 
 
 # --------------------------------------------------------------------------- #
-# 1. News article: script/style/comments excluded even in-scope; noscript kept.
+# 1. News article: script/style/comments/noscript excluded even in-scope.
 # --------------------------------------------------------------------------- #
 class TestNews:
     def _out(self):
@@ -35,7 +28,6 @@ class TestNews:
             assert marker not in out
 
     def test_noscript_excluded(self):
-        # After the refactor <noscript> fallback text is dropped like <script>.
         assert "NOSCRIPT_MARKER" not in self._out()
 
 
@@ -59,7 +51,7 @@ class TestProduct:
 
 
 # --------------------------------------------------------------------------- #
-# 3. Data table: nested table text is DUPLICATED (//table matches both tables).
+# 3. Data table: //table matches both tables, the nested one's text appears once.
 # --------------------------------------------------------------------------- #
 class TestDataTable:
     def _out(self):
@@ -70,8 +62,6 @@ class TestDataTable:
         assert "ACME" in out and "1.234.567" in out
 
     def test_nested_table_not_duplicated(self):
-        # After the refactor //table keeps only the outermost match, so the inner
-        # table's cells appear exactly once.
         out = self._out()
         assert out.count("Sub A") == 1
         assert out.count("Sub B") == 1
@@ -118,11 +108,10 @@ class TestEncoding:
 
 
 # --------------------------------------------------------------------------- #
-# 6. Whitespace: <pre>/<code> significant whitespace is DESTROYED (data loss).
+# 6. Whitespace: kept inside <pre>/<code>, collapsed elsewhere.
 # --------------------------------------------------------------------------- #
 class TestWhitespace:
     def test_pre_code_whitespace_preserved(self):
-        # After the refactor significant whitespace inside <pre>/<code> is kept.
         out = get_xpath_text(parsel_sel=sel(load_fixture("whitespace.html")), xpath="//code")
         assert "def fibonacci(n):\n    if n < 2:\n        return n" in out
 
@@ -157,7 +146,7 @@ class TestSearchScale:
 
 
 # --------------------------------------------------------------------------- #
-# 9. Deep DOM: traverse_soup recurses and CRASHES past the recursion limit.
+# 9. Deep DOM: no crash past the recursion limit.
 # --------------------------------------------------------------------------- #
 class TestDeepDom:
     def test_shallow_ok(self):
@@ -165,7 +154,5 @@ class TestDeepDom:
         assert "DEEP_LEAF" in out
 
     def test_deep_extracts_without_crashing(self):
-        # After the refactor the extractor is iterative (lxml C-level), so a deep
-        # DOM no longer overflows the stack.
         out = get_xpath_text(parsel_sel=sel(deep_nested_html(1500)), xpath="//body")
         assert out == "DEEP_LEAF"
