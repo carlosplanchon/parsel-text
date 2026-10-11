@@ -1,21 +1,21 @@
 # parsel_text
 
-![parsel_text](https://raw.githubusercontent.com/carlosplanchon/parsel_text/main/assets/repo_banner.jpg)
+![parsel_text](https://raw.githubusercontent.com/carlosplanchon/parsel-text/main/assets/repo_banner.jpg)
 
-[![CI](https://github.com/carlosplanchon/parsel_text/actions/workflows/tests.yml/badge.svg)](https://github.com/carlosplanchon/parsel_text/actions/workflows/tests.yml)
-[![PyPI version](https://img.shields.io/pypi/v/parsel_text.svg)](https://pypi.org/project/parsel_text/)
-[![Python versions](https://img.shields.io/pypi/pyversions/parsel_text.svg)](https://pypi.org/project/parsel_text/)
+[![CI](https://github.com/carlosplanchon/parsel-text/actions/workflows/tests.yml/badge.svg)](https://github.com/carlosplanchon/parsel-text/actions/workflows/tests.yml)
+[![PyPI version](https://img.shields.io/pypi/v/parsel-text.svg)](https://pypi.org/project/parsel-text/)
+[![Python versions](https://img.shields.io/pypi/pyversions/parsel-text.svg)](https://pypi.org/project/parsel-text/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/carlosplanchon/parsel_text)
+[![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/carlosplanchon/parsel-text)
 
 `parsel_text` is a Python library designed to simplify the extraction of text data from HTML or XML documents using XPath queries on `parsel` Selector objects. It provides a straightforward interface to obtain and optionally fix mojibake (garbled text due to encoding issues).
 
 ## Installation
 
-To install `parsel_text`, use pip:
+To install `parsel-text`, use pip:
 
 ```bash
-pip install parsel_text
+pip install parsel-text
 ```
 
 ## Usage
@@ -177,7 +177,7 @@ get_results_row_text(parsel_sel=selector, xpath="//li", guess_layout=True)
 Extracts the text of a BeautifulSoup object with the same rules, and also takes `fix_mojibake` and `guess_layout`. `parsel_text` no longer depends on BeautifulSoup: this function works with anything whose `str()` is HTML. To install BeautifulSoup along with the library, use the `bs4` extra:
 
 ```bash
-pip install "parsel_text[bs4]"
+pip install "parsel-text[bs4]"
 ```
 
 ## Contributing

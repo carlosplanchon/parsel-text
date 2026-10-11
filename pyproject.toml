@@ -3,7 +3,7 @@ requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "parsel_text"
+name = "parsel-text"
 version = "2.2.0"
 authors = [
     {name = "Carlos A. Planchón", email = "carlosandresplanchonprestes@gmail.com"}
@@ -36,7 +36,7 @@ dependencies=[
 bs4 = ["beautifulsoup4"]
 
 [project.urls]
-Repository = "https://github.com/carlosplanchon/parsel_text.git"
+Repository = "https://github.com/carlosplanchon/parsel-text.git"
 
 [tool.setuptools]
 packages = ["parsel_text"]

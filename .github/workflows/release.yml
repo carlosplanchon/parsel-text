@@ -2,10 +2,10 @@
 #
 # Publishing uses PyPI Trusted Publishing (OIDC) -- no API token / secret needed.
 # One-time setup required for it to work:
-#   1. PyPI -> project `parsel_text` -> Settings -> Publishing -> "Add a pending/
+#   1. PyPI -> project `parsel-text` -> Settings -> Publishing -> "Add a pending/
 #      trusted publisher (GitHub)":
 #        Owner:        carlosplanchon
-#        Repository:   parsel_text
+#        Repository:   parsel-text
 #        Workflow:     release.yml
 #        Environment:  pypi
 #   2. GitHub -> repo Settings -> Environments -> create environment `pypi`
