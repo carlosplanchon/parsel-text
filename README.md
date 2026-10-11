@@ -1,6 +1,6 @@
 # parsel_text
 
-![parsel_text](https://raw.githubusercontent.com/carlosplanchon/parsel_text/main/assets/banner.jpg)
+![parsel_text](https://raw.githubusercontent.com/carlosplanchon/parsel_text/main/assets/repo_banner.jpg)
 
 [![CI](https://github.com/carlosplanchon/parsel_text/actions/workflows/tests.yml/badge.svg)](https://github.com/carlosplanchon/parsel_text/actions/workflows/tests.yml)
 [![PyPI version](https://img.shields.io/pypi/v/parsel_text.svg)](https://pypi.org/project/parsel_text/)
